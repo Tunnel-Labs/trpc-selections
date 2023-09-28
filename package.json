@@ -1,6 +1,6 @@
 {
   "name": "trpc-selections",
 	"devDependencies": {
-		""
+		"@types/node": "20.7.1"
 	}
 }
