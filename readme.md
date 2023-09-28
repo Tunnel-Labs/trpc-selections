@@ -3,8 +3,9 @@
 GraphQL-like selections in pure TypeScript w/ tRPC:
 
 ```typescript
-// GraphQL
+// GraphQL (w/ Apollo Client)
 client.query({
+  // not type-safe
   query: gql`
     query GetLocations {
       locations {
@@ -15,12 +16,26 @@ client.query({
       }
     }
   `,
-});
+}).then(
+  // needs code generation scripts to be type-safe
+  result => console.log(result)
+);
+
+
 
 // tRPC Selections
 withSelection(
   selection => trpc.locations.get.query({ selection }),
-  { id: true, name: true, description: true, photo: true }
+  // fully type-safe (based on the return value of `trpc.locations.get`)
+  {
+    id: true,
+    name: true,
+    description: true,
+    photo: true
+  }
+).then(
+  // Fully type-safe without code generation
+  result => console.log(result)
 );
 ```
 
