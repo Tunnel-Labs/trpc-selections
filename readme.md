@@ -10,7 +10,9 @@ GraphQL-like selections in pure TypeScript w/ tRPC:
   @see https://www.apollographql.com/docs/react/get-started/
 */
 client.query({
-  // TypeScript can't verify that this query is valid
+  // By using a custom query language, TypeScript can't verify
+  // that this following GraphQL query is valid and the developer
+  // needs to install additional tooling for optimal DX
   query: gql`
     query GetLocations {
       locations {
@@ -22,7 +24,8 @@ client.query({
     }
   `,
 }).then(
-  // Code generation scripts are required for TypeScript to infer the type of `result`
+  // Code generation scripts are required for TypeScript
+  // to correctly infer the type of `result`
   result => console.log(result)
 );
 
