@@ -11,10 +11,12 @@ Backend code:
 import { z } from 'zod';
 import { zSelection } from 'trpc-selection'
 import { select } from 'typegeese'
-import { UserModel } from '~/db.ts'
+
+import { procedure, router } from '~/utils/trpc.ts'
+import { UserModel } from '~/utils/db.ts'
 
 export const appRouter = router({
-  getUser: publicProcedure
+  getUser: procedure
     .input(
       z.object({
         id: z.string(),
