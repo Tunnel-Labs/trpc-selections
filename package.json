@@ -1,5 +1,6 @@
 {
   "name": "trpc-selections",
+	"type": "module",
   "dependencies": {
     "@typescript-eslint/typescript-estree": "^6.7.3",
 		"deepmerge-ts": "5.1.0",
