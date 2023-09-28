@@ -246,8 +246,8 @@ export async function getSelectionHashes({
 
 	// Add our complex selections
 	for (const selectionDefinition of Object.values(selectionDefinitions)) {
-		if (selectionDefinition.name.includes('_')) {
-			const selection = selectionDefinition();
+		if ((selectionDefinition as any).name.includes('_')) {
+			const selection = (selectionDefinition as any)();
 			selectionHashes[hash.sha1(selection)] = selection;
 		}
 	}
