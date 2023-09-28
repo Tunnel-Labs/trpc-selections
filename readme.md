@@ -3,10 +3,11 @@
 GraphQL-like selections in pure TypeScript w/ tRPC:
 
 ```typescript
-/*
+/**
   GraphQL requires additional tooling in order to integrate well with TypeScript.
 
-  The following example is from Apollo Client's documentation (https://www.apollographql.com/docs/react/get-started/)
+  The following example is from Apollo Client's documentation
+  @see https://www.apollographql.com/docs/react/get-started/
 */
 client.query({
   // TypeScript can't verify that this query is valid
@@ -25,7 +26,10 @@ client.query({
   result => console.log(result)
 );
 
-/* tRPC Selections */
+/**
+  tRPC Selections leverages tRPC's end-to-end type safety to integrate well
+  with TypeScript out-of-the-box without any code generation scripts.
+*/
 withSelection(
   (selection) => trpc.locations.get.query({ selection }),
   // TypeScript checks the selection fields based on the `Location` model
