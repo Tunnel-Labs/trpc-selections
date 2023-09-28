@@ -1,6 +1,28 @@
-# trpc-selections
+# tRPC Selections
 
-Type-safe GraphQL-like fine-grained selections but in pure TypeScript without code generation.
+GraphQL-like selections in pure TypeScript w/ tRPC:
+
+```typescript
+// GraphQL
+client.query({
+  query: gql`
+    query GetLocations {
+      locations {
+        id
+        name
+        description
+        photo
+      }
+    }
+  `,
+});
+
+// tRPC Selections
+withSelection(
+  selection => trpc.locations.get.query({ selection }),
+  { id: true, name: true, description: true, photo: true }
+);
+```
 
 ## Motivation
 
