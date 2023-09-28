@@ -1,1 +1,1 @@
-export { getSelectionHashes } from "./utils/hashes.js";
+export { getSelectionHashes } from './utils/hashes.js';
