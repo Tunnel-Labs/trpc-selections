@@ -3,7 +3,11 @@
 GraphQL-like selections in pure TypeScript w/ tRPC:
 
 ```typescript
-/* GraphQL (w/ Apollo Client) */
+/*
+  GraphQL requires additional tooling in order to integrate well with TypeScript.
+
+  The following example is from Apollo Client's documentation (https://www.apollographql.com/docs/react/get-started/)
+*/
 client.query({
   // TypeScript can't verify that this query is valid
   query: gql`
