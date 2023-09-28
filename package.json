@@ -1,22 +1,29 @@
 {
-  "name": "trpc-selections",
+	"name": "trpc-selections",
 	"type": "module",
-  "dependencies": {
-    "@typescript-eslint/typescript-estree": "^6.7.3",
+	"version": "0.0.2",
+	"scripts": {
+		"build": "tsx ./scripts/build.ts"
+	},
+	"dependencies": {
+		"@typescript-eslint/typescript-estree": "^6.7.3",
+		"@vscode/ripgrep": "^1.15.5",
 		"deepmerge-ts": "5.1.0",
-    "estree-walker": "^3.0.3",
-    "execa": "^8.0.1",
-    "fast-glob": "^3.3.1",
-    "get-monorepo-root": "^1.1.0",
-    "json5": "^2.2.3",
-    "object-hash": "^3.0.0",
-    "pathe": "^1.1.1",
-    "sort-keys": "^5.0.0",
-    "typegeese": "^0.0.84",
-    "@vscode/ripgrep": "^1.15.5",
-    "yaml": "^2.3.2"
-  },
-  "devDependencies": {
-    "@types/node": "^20.7.1"
-  }
+		"estree-walker": "^3.0.3",
+		"execa": "^8.0.1",
+		"fast-glob": "^3.3.1",
+		"get-monorepo-root": "^1.1.0",
+		"json5": "^2.2.3",
+		"object-hash": "^3.0.0",
+		"pathe": "^1.1.1",
+		"sort-keys": "^5.0.0",
+		"typegeese": "^0.0.84",
+		"yaml": "^2.3.2"
+	},
+	"devDependencies": {
+		"@types/node": "^20.7.1",
+		"@types/object-hash": "^3.0.4",
+		"typescript": "^5.2.2",
+		"lionconfig": "^3.1.1"
+	}
 }
