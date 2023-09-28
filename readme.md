@@ -47,7 +47,8 @@ withSelection(
     photo: true
   }
 ).then(
-  // The type of `result` is correctly typed with the selected fields passed in the above selections object
+  // The type of `result` is correctly inferred using the
+  // fields passed in the above selections object
   result => console.log(result)
 );
 ```
