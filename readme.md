@@ -8,7 +8,7 @@ GraphQL requires additional tooling and complex workflows to integrate nicely wi
 
 ```typescript
 /**
-  The following example is from Apollo Client's documentation
+  The following example is from Apollo Client's documentation.
   @see https://www.apollographql.com/docs/react/get-started/
 */
 const result = await client.query({
@@ -61,7 +61,11 @@ Instead, `trpc-selections` adds on top of tRPC's native type-safety (i.e. no cod
 
 ## Usage
 
-Backend code:
+### With [Prisma](https://prisma.io)
+
+TODO
+
+### With [typegeese](https://github.com/Tunnel-Labs/typegeese)
 
 ```typescript
 // server/router.ts
@@ -92,6 +96,7 @@ export const appRouter = router({
 ```
 
 Frontend code:
+
 ```typescript
 import { withSelection } from 'trpc-selections';
 
@@ -119,5 +124,3 @@ console.log(user); // Outputs: "{ username: '...', email: '...', posts: [{ title
 ## Selection hashes
 
 To avoid DoS attacks from users passing arbitrarily complex selection objects to your route, `trpc-selections` provides a helper function called `generateHashes` that statically extracts all the inline selection objects throughout your entire codebase using `ripgrep` and AST parsing.
-
-
