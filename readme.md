@@ -11,7 +11,7 @@ GraphQL requires additional tooling and complex workflows to integrate nicely wi
   The following example is from Apollo Client's documentation
   @see https://www.apollographql.com/docs/react/get-started/
 */
-client.query({
+const result = await client.query({
   // Since GraphQL uses a custom query language,
   // TypeScript can't verify that this following GraphQL
   // query is valid and the developer needs to install
@@ -26,17 +26,17 @@ client.query({
       }
     }
   `,
-}).then(
-  // Code generation scripts are required for TypeScript
-  // to correctly infer the type of `result`
-  result => console.log(result)
-);
+});
+
+// Code generation scripts are required for TypeScript
+// to correctly infer the type of `result`
+console.log(result);
 ```
 
 In contrast, tRPC Selections leverages tRPC's end-to-end type safety to integrate well with TypeScript out-of-the-box without any code generation scripts:
 
 ```typescript
-withSelection(
+const result = await withSelection(
   (selection) => trpc.locations.get.query({ selection }),
   // TypeScript checks the selection fields based on the `Location` model
   // (which is inferred by the return value of `trpc.locations.get`)
@@ -46,11 +46,11 @@ withSelection(
     description: true,
     photo: true
   }
-).then(
-  // The type of `result` is correctly inferred using the
-  // fields passed in the above selections object
-  result => console.log(result)
-);
+)
+
+// The type of `result` is correctly inferred using the
+// fields passed in the above selections object
+console.log(result);
 ```
 
 ## Motivation
