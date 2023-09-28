@@ -1,11 +1,13 @@
 # tRPC Selections
 
-GraphQL-like selections in pure TypeScript w/ tRPC:
+GraphQL-like selections in pure TypeScript w/ tRPC.
+
+## Comparison with GraphQL
+
+GraphQL requires additional tooling and complex workflows to integrate nicely with TypeScript:
 
 ```typescript
 /**
-  GraphQL requires additional tooling in order to integrate well with TypeScript.
-
   The following example is from Apollo Client's documentation
   @see https://www.apollographql.com/docs/react/get-started/
 */
@@ -29,11 +31,11 @@ client.query({
   // to correctly infer the type of `result`
   result => console.log(result)
 );
+```
 
-/**
-  tRPC Selections leverages tRPC's end-to-end type safety to integrate well
-  with TypeScript out-of-the-box without any code generation scripts.
-*/
+In contrast, tRPC Selections leverages tRPC's end-to-end type safety to integrate well with TypeScript out-of-the-box without any code generation scripts:
+
+```typescript
 withSelection(
   (selection) => trpc.locations.get.query({ selection }),
   // TypeScript checks the selection fields based on the `Location` model
