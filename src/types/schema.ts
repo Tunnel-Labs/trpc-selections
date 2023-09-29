@@ -1,5 +1,5 @@
-import type { SelectOutput } from 'typegeese';
-import type { ProcedureReturnType } from './procedure.js';
+import type { ProcedureReturnType } from '~/types/procedure.js';
+import type { SelectOutput } from '~/types/select.js';
 
 export type SchemaFromProcedureCallback<
 	ProcedureCallback extends (selection: any) => any
