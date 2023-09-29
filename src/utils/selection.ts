@@ -32,30 +32,32 @@ export function expandSelections<
 export function createSelectionFunction<
 	Definition extends SelectionDefinition<any, any>
 >(selectionDefinition: Definition) {
-	type Select = Definition extends SelectionDefinition<infer Select, any>
-		? Select
-		: never;
-	type SelectionMappings = Definition extends SelectionDefinition<
-		any,
-		infer SelectionMappings
-	>
-		? SelectionMappings
-		: never;
-
-	type ExpandedSelections = ExpandSelections<SelectionMappings>;
-
 	const expandedSelections = expandSelections(selectionDefinition as any);
 
 	return function select<
-		Selections extends Select & {
-			[K in keyof SelectionMappings]?: boolean | undefined;
+		const Selections extends (Definition extends SelectionDefinition<
+			infer Select,
+			any
+		>
+			? Select
+			: never) & {
+			[K in keyof (Definition extends SelectionDefinition<
+				any,
+				infer SelectionMappings
+			>
+				? SelectionMappings
+				: never)]?: boolean | undefined;
 		}
 	>(
 		selections: Selections
 	): UnionToIntersection<
 		{
 			[SelectionKey in keyof Selections]: SelectionKey extends `$${string}`
-				? ExpandedSelections[SelectionKey]
+				? ExpandSelections<
+						Definition extends SelectionDefinition<any, infer SelectionMappings>
+							? SelectionMappings
+							: never
+				  >[SelectionKey]
 				: Record<SelectionKey, Selections[SelectionKey]>;
 		}[keyof Selections]
 	> {
