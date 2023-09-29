@@ -29,6 +29,12 @@ dependencies:
   json5:
     specifier: ^2.2.3
     version: 2.2.3
+  map-obj:
+    specifier: ^5.0.2
+    version: 5.0.2
+  merge:
+    specifier: ^2.1.1
+    version: 2.1.1
   object-hash:
     specifier: ^3.0.0
     version: 3.0.0
@@ -5235,6 +5241,10 @@ packages:
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
+
+  /merge@2.1.1:
+    resolution: {integrity: sha512-jz+Cfrg9GWOZbQAnDQ4hlVnQky+341Yk5ru8bZSe6sIDTCIg8n9i/u7hSQGSVOF3C7lH6mGtqjkiT9G4wFLL0w==}
+    dev: false
 
   /micro-spelling-correcter@1.1.1:
     resolution: {integrity: sha512-lkJ3Rj/mtjlRcHk6YyCbvZhyWTOzdBvTHsxMmZSk5jxN1YyVSQ+JETAom55mdzfcyDrY/49Z7UCW760BK30crg==}

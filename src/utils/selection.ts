@@ -1,15 +1,12 @@
-import hash from 'object-hash';
-import type { SelectInput, SelectOutput } from 'typegeese';
-
 import { deepmerge } from 'deepmerge-ts';
 import type { UnionToIntersection } from 'type-fest';
+import mapObject, { mapObjectSkip } from 'map-obj';
+import { merge } from 'merge';
 
 import type {
 	SelectionDefinition,
 	ExpandSelections
-} from '../types/selections.js';
-import type { ProcedureReturnType } from '../types/procedure.js';
-import type { SchemaFromProcedureCallback } from '../types/schema.js';
+} from '~/types/selections.js';
 
 export function expandSelections<
 	SelectionMapping extends Record<string, Record<string, unknown>>
@@ -76,60 +73,30 @@ export function createSelectionFunction<
 	};
 }
 
-/**
-	Creates a type-safe wrapper function for defining selections
-*/
-export function defineSelectionMappings<Model>(): {
-	set<
-		SelectionMappings extends Record<
-			`$${string}`,
-			SelectInput<Model> & { [K in keyof SelectionMappings]?: boolean }
-		>
-	>(
-		mappings: () => SelectionMappings
-	): () => SelectionDefinition<SelectInput<Model>, SelectionMappings>;
+export function unscopeSelections<Selections extends Record<string, () => any>>(
+	selections: Selections
+): {
+	[SelectionIdentifier in keyof Selections as SelectionIdentifier extends `${string}_${infer UnscopedIdentifier}`
+		? UnscopedIdentifier
+		: never]: ReturnType<Selections[SelectionIdentifier]>;
 } {
-	return {
-		set(cb: () => any) {
-			return cb;
+	return mapObject(selections, (key, selection) => {
+		if (key === 'default') {
+			return mapObjectSkip;
 		}
-	} as any;
+
+		const identifier = (key as string).split('_')[1];
+
+		if (identifier === undefined) {
+			throw new Error(`Invalid selection identifier: ${String(key)}`);
+		}
+
+		return [identifier, selection()];
+	}) as any;
 }
 
-export async function createWithSelection({
-	selectionHashes
-}: {
-	selectionHashes: Record<string, unknown>;
-}) {
-	return function withSelection<
-		ProcedureCallback extends (selection: string) => any,
-		const Selection extends SelectInput<
-			SchemaFromProcedureCallback<ProcedureCallback>
-		>
-	>(
-		cb: ProcedureCallback,
-		selection: Selection
-	): Promise<
-		| (ProcedureReturnType<ProcedureCallback> extends Array<any>
-				? SelectOutput<
-						SchemaFromProcedureCallback<ProcedureCallback>,
-						Selection
-				  >[]
-				: SelectOutput<
-						SchemaFromProcedureCallback<ProcedureCallback>,
-						Selection
-				  >)
-		| (null extends ProcedureReturnType<ProcedureCallback> ? null : never)
-	> {
-		const selectionHash = hash.sha1(selection);
-		if (selectionHashes[selectionHash] === undefined) {
-			// eslint-disable-next-line no-console -- bruh
-			console.error('Selection not found in selectionHashes', selection);
-			throw new Error(
-				`Selection hash ${selectionHash} not found in selectionHashes`
-			);
-		}
-
-		return cb(selectionHash);
-	};
+export function combineSelections<
+	Selections extends Array<Record<string, any>>
+>(...selections: Selections): UnionToIntersection<Selections[number]> {
+	return merge(...selections);
 }
