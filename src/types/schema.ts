@@ -8,11 +8,11 @@ export type SchemaFromProcedureCallback<
 	any
 >[]
 	? NonNullable<
-			Exclude<ProcedureReturnType<ProcedureCallback>, null>[number]['__type']
+			Exclude<ProcedureReturnType<ProcedureCallback>, null>[number]['__type__']
 	  >
 	: Exclude<ProcedureReturnType<ProcedureCallback>, null> extends SelectOutput<
 			any,
 			any
 	  >
-	? NonNullable<Exclude<ProcedureReturnType<ProcedureCallback>, null>['__type']>
+	? NonNullable<Exclude<ProcedureReturnType<ProcedureCallback>, null>['__type__']>
 	: never;
