@@ -1,4 +1,4 @@
-import type { SelectionDefinition } from '../types/selections.js';
+import type { SelectionDefinition } from '~/types/selections.js';
 import type { SelectInput } from 'typegeese';
 
 /**

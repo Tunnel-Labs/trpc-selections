@@ -1,8 +1,9 @@
 import hash from 'object-hash';
-import { SelectInput, SelectOutput } from 'typegeese';
-import { SchemaFromProcedureCallback, ProcedureReturnType } from '~/index.js';
+import type { SelectInput, SelectOutput } from 'typegeese';
+import type { SchemaFromProcedureCallback } from '~/types/schema.js';
+import type { ProcedureReturnType } from '~/types/procedure.js';
 
-export async function createWithSelection({
+export function createWithSelection({
 	selectionHashes
 }: {
 	selectionHashes: Record<string, unknown>;
