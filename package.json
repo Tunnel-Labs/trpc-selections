@@ -2,6 +2,7 @@
 	"name": "trpc-selections",
 	"type": "module",
 	"version": "0.0.8",
+	"exports": "./src/index.ts",
 	"scripts": {
 		"build": "tsx ./scripts/build.ts"
 	},
