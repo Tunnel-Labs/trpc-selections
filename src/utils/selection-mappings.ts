@@ -1,5 +1,5 @@
 import type { SelectionDefinition } from '~/types/selections.js';
-import type { SelectInput } from 'typegeese';
+import type { SelectInput } from '@typegeese/types';
 
 /**
 	Creates a type-safe wrapper function for defining selections

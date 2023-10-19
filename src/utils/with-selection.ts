@@ -1,5 +1,5 @@
 import hash from 'object-hash';
-import type { SelectInput, SelectOutput } from 'typegeese';
+import type { SelectInput, SelectOutput } from '@typegeese/types';
 import type { SchemaFromProcedureCallback } from '~/types/schema.js';
 import type { ProcedureReturnType } from '~/types/procedure.js';
 

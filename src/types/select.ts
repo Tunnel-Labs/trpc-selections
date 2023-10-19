@@ -1,12 +1,12 @@
-import type { IsDeprecated, ForeignRef, VirtualForeignRef } from 'typegeese';
+import type { ForeignRef, VirtualForeignRef } from '@typegeese/types';
 
 // prettier-ignore
 export type SelectInput<Model> = {
 	[K in keyof Model as
-		| IsDeprecated<Model[K]> extends true ? never
-		: K extends '__type__' ? never
-		: K extends '_v' ? never
-		: K
+		K extends '__type__'
+			? never :
+		K extends '_v' ? never :
+			K
 	]?
 		: NonNullable<Model[K]> extends (infer InnerValue)[]
 			? NonNullable<InnerValue> extends VirtualForeignRef<any, infer Nested, infer _ForeignField>

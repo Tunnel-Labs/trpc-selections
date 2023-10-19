@@ -7,6 +7,7 @@
 		"build": "tsx ./scripts/build.ts"
 	},
 	"dependencies": {
+		"@typegeese/types": "^0.0.102",
 		"@typescript-eslint/typescript-estree": "^6.7.3",
 		"@vscode/ripgrep": "^1.15.5",
 		"deepmerge-ts": "5.1.0",
@@ -20,7 +21,7 @@
 		"object-hash": "^3.0.0",
 		"pathe": "^1.1.1",
 		"sort-keys": "^5.0.0",
-		"typegeese": "^0.0.84",
+		"type-fest": "^4.5.0",
 		"yaml": "^2.3.2"
 	},
 	"devDependencies": {

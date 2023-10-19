@@ -1,5 +1,5 @@
 import type { UnionToIntersection } from 'type-fest';
-import type { SelectInput } from 'typegeese';
+import type { SelectInput } from '@typegeese/types';
 
 export interface SelectionDefinition<
 	_Select,
