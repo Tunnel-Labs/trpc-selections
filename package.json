@@ -1,10 +1,14 @@
 {
-	"name": "trpc-selections",
+	"name": "convex-selections",
+	"root": true,
 	"type": "module",
-	"version": "0.0.8",
+	"version": "0.0.0",
 	"exports": "./src/index.ts",
 	"scripts": {
-		"build": "tsx ./scripts/build.ts"
+		"build": "tun ./scripts/build.ts"
+	},
+	"peerDependencies": {
+		"convex": "^1.4.1"
 	},
 	"dependencies": {
 		"@typegeese/types": "^0.0.102",
@@ -25,6 +29,8 @@
 		"yaml": "^2.3.2"
 	},
 	"devDependencies": {
+		"convex": "^1.4.1",
+		"@tunnel/tun": "^0.1.2",
 		"@types/node": "^20.7.1",
 		"@types/object-hash": "^3.0.4",
 		"typescript": "^5.2.2",
