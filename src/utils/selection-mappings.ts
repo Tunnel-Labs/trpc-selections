@@ -1,18 +1,26 @@
 import type { SelectionDefinition } from '~/types/selections.js';
-import type { SelectInput } from '~/types/select.ts';
+import type { SelectInputFromDataModel } from '~/types/select.js';
 
 /**
 	Creates a type-safe wrapper function for defining selections
 */
-export function defineSelectionMappings<$DataModel, $TableName extends string>(): {
+export function defineSelectionMappings<
+	$DataModel,
+	$TableName extends string
+>(): {
 	set<
 		SelectionMappings extends Record<
 			`$${string}`,
-			SelectInput<$TableName> & { [K in keyof SelectionMappings]?: boolean }
+			SelectInputFromDataModel<$DataModel, $TableName> & {
+				[K in keyof SelectionMappings]?: boolean;
+			}
 		>
 	>(
 		mappings: () => SelectionMappings
-	): () => SelectionDefinition<SelectInput<Model>, SelectionMappings>;
+	): () => SelectionDefinition<
+		SelectInputFromDataModel<$DataModel, $TableName>,
+		SelectionMappings
+	>;
 } {
 	return {
 		set(cb: () => any) {
